@@ -21,6 +21,13 @@ console.log("khobor hy gece");
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/login">LogIn</NavLink></li>
         <li><NavLink to="/register">Register</NavLink></li>
+        <li><NavLink to="/order">Order</NavLink></li>
+        {
+          user && <>
+          <li><NavLink to="/profile">Profile</NavLink></li>
+          <li><NavLink to="/notice">Notice</NavLink></li>
+          </>
+        }
         
         </>
     return (
