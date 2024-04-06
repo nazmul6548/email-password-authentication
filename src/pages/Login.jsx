@@ -5,7 +5,7 @@ import { AuthContext } from "../provider/Authprovider";
 
 const Login = () => {
 
-  const {signInUser} = useContext(AuthContext)
+  const {signInUser,signwithgoogle} = useContext(AuthContext)
   const navigate= useNavigate()
 
     const loginhandler = (e) => {
@@ -24,6 +24,15 @@ const Login = () => {
         .catch((error) => {
           console.error(error);
         })
+    }
+    const handlegoogel = () =>{
+      signwithgoogle()
+      .than(result => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.error(error);
+      })
     }
     return (
         <div className="hero min-h-screen bg-base-200">
@@ -54,6 +63,8 @@ const Login = () => {
               </div>
             </form>
             <p className="ml-4 p-4">You are new? go to <NavLink className="font-bold underline" to="/register">Register</NavLink> </p>
+
+            <p><button onClick={handlegoogel} className="btn btn-ghost">Google</button></p>
           </div>
         </div>
       </div>
