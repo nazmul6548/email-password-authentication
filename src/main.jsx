@@ -14,6 +14,8 @@ import Root from './pages/Root.jsx';
 import Authprovider from './provider/Authprovider.jsx';
 import Order from './pages/Order.jsx';
 import Privateroute from './pages/Privateroute.jsx';
+import Profile from './pages/component/Profile.jsx';
+import Notice from './Notice.jsx';
 
 const router = createBrowserRouter([
   {
@@ -23,7 +25,7 @@ const router = createBrowserRouter([
       {
         path:"/",
         element:<Home>
-          <div>mew mew</div>
+          
         </Home>
       },
       {
@@ -41,6 +43,14 @@ const router = createBrowserRouter([
         element:<Privateroute>
           <Order></Order>
         </Privateroute>
+      },
+      {
+        path:"/profile",
+        element:<Profile></Profile>
+      },
+      {
+        path:"/notice",
+        element:<Notice></Notice>
       }
     ]
   },

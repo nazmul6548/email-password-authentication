@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../provider/Authprovider";
 
@@ -6,7 +6,11 @@ import { AuthContext } from "../provider/Authprovider";
 const Register = () => {
 
 const {createUser} = useContext(AuthContext)
+const [error,setError] =useState("")
+const [emerror,setEmerror] =  useState("")
 // console.log(createUser);
+
+
 
 const registerhandler = (e) => {
 e.preventDefault()
@@ -14,7 +18,36 @@ const name  = e.target.name.value;
 const photo =e.target.photo.value;
 const email =e.target.email.value;
 const password =e.target.password.value;
-const confirm = e.target.Confirmpassword.value
+const confirm = e.target.Confirmpassword.value;
+
+
+
+if (!/@gmail\.com$/.test(email)) {
+  setEmerror("d")
+  return
+}
+
+
+
+if (password.length < 6) {
+  setError("password must be at least 6 characters")
+  return
+}
+if (password !== confirm) {
+  setError("password didn't match");
+  return
+  
+}
+if (!/^(?=.*\d.*\d).+/.test(password)) {
+  setError("hey add at least two numbers");
+  return
+}
+if (!/^(?=(.*[\W]){2}).+/.test(password)) {
+  setError("please add special characters like @#$%")
+  return
+}
+setError("")
+setEmerror("")
 console.log(name,photo,email,password,confirm);
 
 
@@ -23,7 +56,7 @@ createUser(email,password)
     console.log(result.user);
 })
 .catch((error) => {
-    console.error(error);
+    setError(error.message);
 })
 }
 
@@ -86,9 +119,11 @@ createUser(email,password)
                   <span className="label-text">Confirm Password</span>
                 </label>
                 <input type="password" name="Confirmpassword" placeholder="confirm password" className="input input-bordered" required />
-                <label className="label">
+                
+                {/* <label className="label">
+                 
                   <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                </label>
+                </label> */}
               </div>
 
 
@@ -102,13 +137,19 @@ createUser(email,password)
             
 
 
-
+              {
+                  error &&  <p>{error}</p>
+                }
+                {
+                  emerror && <p>{emerror}</p>
+                }
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Login</button>
               </div>
             </form>
             <p className="p-3 ml-4">You are already register ? go to <NavLink className="underline font-bold" to="/login">Login</NavLink></p>
           </div>
+         
         </div>
       </div>
     );
