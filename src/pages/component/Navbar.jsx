@@ -20,8 +20,8 @@ console.log("khobor hy gece");
     const navbarlink = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/login">LogIn</NavLink></li>
-        <li><NavLink to="/register">Register</NavLink></li>
         <li><NavLink to="/order">Order</NavLink></li>
+        <li><NavLink to="/register">Register</NavLink></li>
         {
           user && <>
           <li><NavLink to="/profile">Profile</NavLink></li>
